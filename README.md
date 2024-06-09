@@ -22,7 +22,7 @@ Chat-Engine is a powerful and user-friendly text messaging platform built with P
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/chat-engine.git
+   git clone https://github.com/afsalat/chat-engine.git
    ```
 2. Navigate to the project directory:
    ```bash
