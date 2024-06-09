@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="{{ url_for('static', filename="css/register.css")}}" >
+        <link rel="stylesheet" href="{{ url_for('static', filename="css/register.scss")}}" >
+    </head>
+    <body>
+		<div class="wrapper">
+			<div class="inner">
+				<div class="image-holder">
+					<img src="https://st4.depositphotos.com/17714924/20179/i/450/depositphotos_201790790-stock-photo-chat-icon-line-style-icon.jpg" alt="">
+				</div>
+				<form action="" method="POST">
+					<h4>Registration Now</h4>
+					<br/>
+					<h3>CHAT ENGINE</h3>
+
+					<div class="form-wrapper">
+						<input type="text" name="username" placeholder="Username" class="form-control" required>
+						<i class="zmdi zmdi-account"></i>
+					</div>
+					<div class="form-wrapper">
+						<input type="text" name='email' placeholder="Email Address" class="form-control" required>
+						<i class="zmdi zmdi-email"></i>
+					</div>
+					<div class="form-wrapper">
+						<input type="password" name="password" placeholder="Password" class="form-control" required>
+						<i class="zmdi zmdi-lock"></i>
+					</div>
+					<div class="form-wrapper">
+						<input type="password" name="re_password" placeholder="Confirm Password" class="form-control" required>
+						<i class="zmdi zmdi-lock"></i>
+						{% if err %}
+						<h6 class="err_msg">{{err}}</h6>
+						{% endif %}
+					</div>
+					<button>Register
+						<i class="zmdi zmdi-arrow-right"></i>
+					</button>
+				</form>
+			</div>
+		</div>
+		
+	
+</body>
+</html>

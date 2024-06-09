@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css')}}">
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+        integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+        crossorigin="anonymous"
+      ></script>
+        <script type="text/javascript" charset="utf-8">
+            socket = io()
+
+
+            socket.emit("call_status")
+
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            
+            <div class="header">
+                <div class="lt_head">
+
+                </div>
+                <div class="cr_head">
+                    <h1 class="title">Chat Engine</h1>
+                </div>
+                <div class="rt_head">
+
+                </div>
+            </div>
+            <div class="body">
+                <div class="l_body">
+                    <div class="l_body_caption">
+                        <h1>Let's</h1>
+                        <h3>Start convasetion with your friends.</h3>
+                        <p>We will provide world best chating experiance.</p>
+                    </div>
+                </div>
+                <div class="r_body">
+                    <div class="r_body_top">
+                        <a href="/login" class="login_btn">Login</a>
+                    </div>
+                    <div class="r_body_bottom">
+                        <a href="/register" class="register_btn">Register</a>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="footer">
+                <p>Copyright © 2008 Apple Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </body>
+</html>
+

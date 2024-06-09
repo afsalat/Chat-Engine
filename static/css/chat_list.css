@@ -1,0 +1,306 @@
+body { 
+    background-color: cadetblue;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgb(29, 104, 106),rgb(16, 115, 119));
+    box-shadow: 3px 3px 3px 3px rgb(35, 71, 73) inset;
+}
+
+
+/* header section start */
+
+.container .header {
+    width: 100%;
+    height: 10%;
+    display: inline-flex;
+}
+
+.container .header .search_bar {
+    width: 90%;
+    height: 100%;
+    text-align: center;
+}
+
+.container .header .search_bar .btn { 
+    margin-top: 15px;
+    background: linear-gradient(rgb(59, 147, 150), rgb(16, 83, 84));
+    border: none;
+    height: 50%;
+    width: 10%;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.container .header .search_bar .field {
+    color: white;
+    background: linear-gradient(rgb(59, 147, 150), rgb(16, 83, 84));
+    width: 50%;
+    height: 50%;
+    margin-top: 15px;
+    border: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.container .header .logout_btn { 
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    font-size: 90%;
+}
+
+.container .header .logout_btn .btn { 
+    margin-top: 15%;
+    width: 40%;
+    border-radius: 20%;
+    color: rgb(15, 61, 62);
+    font-weight: bold;
+    background: linear-gradient(rgb(59, 147, 150), rgb(16, 83, 84));
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* header section end */
+
+
+
+/* body section start */
+
+.container .body {
+    width: 100%;
+    height: 90%;
+    display: inline-flex;
+}
+
+
+/* left body start */
+
+.container .body .l_body {
+    width: 30%;
+    height: 100%;
+    border-right: 2px rgb(20, 65, 66) solid;
+    overflow: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-color: cadetblue rgb(20, 69, 71);
+}
+
+.container .body .l_body .chat_box {
+    width: 90%;
+    height: 13%;
+    float: right;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    box-shadow: 3px 3px 5px black;
+    margin-top: 10px;
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.container .body .l_body .chat_box .pro_photo {
+    width: 30%;
+    height: 100%;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.container .body .l_body .chat_box .contact_name {
+    width: 40%;
+    height: 100%;
+}
+
+.container .body .l_body .chat_box .pro_photo .image {
+    width: 50%;
+    height: 50%;
+    background-color: black;
+    border: 1px solid black;
+    margin-top: 12%;
+    margin-left: 20%;
+    border-radius: 50%;
+}
+
+.container .body .l_body .chat_box .count_info { 
+    width: 30%;
+    height: 100%;
+    text-align: center;
+}
+
+.container .body .l_body .chat_box .count_info .count {
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    background-color: rgb(6, 157, 162);
+    margin-left: 30%;
+    text-align: center;
+    
+}
+
+.container .body .l_body .chat_box .count_info .count p {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    color:rgb(23, 70, 72);
+}
+
+
+/* left body section end */
+
+
+/* right body section start */
+
+.container .body .r_body {
+    width: 70%;
+    height: 100%;
+    background-color: rgb(31, 105, 107);
+}
+
+.container .body .r_body .contact_details {
+    width: 100%;
+    height: 10%;
+    background-color: cadetblue;
+    display: inline-flex;
+}
+
+.container .body .r_body .chat_area {
+    width: 100%;
+    height: 80%;
+    display: inline-flex;
+}
+
+.container .body .r_body .chat_area .l_chat {
+    width: 50%;
+    height: 100%;
+    background-color: rgb(169, 19, 19);
+}
+
+.container .body .r_body .chat_area .r_chat {
+    width: 50%;
+    height: 100%;
+    background-color: rgb(140, 113, 113);
+}
+
+.container .body .r_body .chat_operations .form {
+    width: 100%;
+    height: 10%;
+    background-color: blue;
+    display: inline-flex;
+    background-color: rgb(70, 125, 127);
+}
+
+.container .body .r_body .chat_operations .field {
+    width: 80%;
+    height: 100%;
+}
+
+.container .body .r_body .chat_operations .field input {
+    width: 95%;
+    height: 60%;
+    margin: 2% 2%;
+    border: none;
+    border-radius: 5%;
+    color: rgb(158, 193, 194);
+    background-color: rgb(70, 180, 184);
+}
+
+.container .body .r_body .chat_operations .btn_field {
+    width: 20%;
+    height: 100%;
+}
+
+.container .body .r_body .chat_operations .btn_field .btn{
+    width: 70%;
+    height: 60%;
+    margin-top: 8%;
+    color: rgb(14, 53, 54) ;
+    border-radius: 30%;
+    background-color: cadetblue;
+}
+
+.container .body .r_body .contact_details .pro_photo {
+    width: 10%;
+    height: 100%;
+}
+
+.container .body .r_body .contact_details .pro_photo .avatar{
+    width: 60%;
+    height: 60%;
+    margin: 15% 15%;
+    border-radius: 50%;
+    background-color: rgb(7, 7, 7);
+}
+
+.container .body .r_body .contact_details .contact_name {
+    width: 90%;
+    height: 100%;
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.chat-container {
+	overflow: auto;
+    overflow-x: hidden;
+    scrollbar-color: cadetblue rgb(20, 69, 71);
+	padding: 15px;
+	position: relative;
+	width: 100%;
+}
+
+.chat {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+
+.message {
+	background-color: rgb(165, 206, 207);
+	border-radius: 50px;
+	box-shadow: 0px 15px 5px 0px rgba(0,0,0,0.5);
+	position: relative;
+	margin-bottom: 30px;
+}
+
+.message.left {
+	padding: 15px 20px 15px 70px;
+}
+
+.message.right {
+	align-self: flex-end;
+	padding: 15px 70px 15px 20px;
+}
+
+.right {
+	align-self: flex-end;
+	padding: 15px 7px 15px 20px;
+}
+
+.logo {
+	border-radius: 50%;
+	box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.7);
+	object-fit: cover;
+	position: absolute;
+	left: 10px;
+	top: -10px;
+	width: 50px;
+	height: 50px;
+}
+
+.message.right .logo {
+	left: auto;
+	right: 10px;
+}
+
+.message p {
+	margin: 0;
+}
+
+
+/* right body section end */
+
+/* body section end */

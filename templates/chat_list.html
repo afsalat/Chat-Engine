@@ -1,0 +1,335 @@
+<html>
+  <head>
+    <title></title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/chat_list.css')}}"
+    />
+    <script type="text/javascript" charset="utf-8">
+
+
+      var socket = io();
+      var to_name = "";
+      var uname = "{{ session['username']}}";
+      console.log(uname, " connected!");
+
+      socket.emit("members_alert"); 
+      socket.emit("count_up");
+      socket.emit("call_status")
+  
+      
+      socket.on("message", function (msg_) {
+        console.log(msg_);
+        console.log("new msg : ", msg_["content"])
+        
+        if (msg_["to_id"] === uname) {
+          console.log("test - ", msg_["content"]);
+
+
+          var msg = document.createElement("li");
+          var sub = document.createElement("p");
+          sub.className = "message left";
+          sub.innerHTML = message;
+          time.innerHTML = x['date'];
+          time.style = "font-size: 10px; text-decrotion: none;";
+          
+          msg.appendChild(sub)
+          msg.appendChild(time)
+          document.getElementById("chat").appendChild(msg);
+
+          scrollBottom()
+        }
+      });
+
+      function logout_info() {
+          
+        socket.emit('call_status')
+        
+      }
+
+
+      socket.on('status', function (data) {
+
+        console.log(data)
+
+        for (x of data) {
+          if (x['username'] != uname) {
+            console.log(x['username'])
+            console.log(x['status'])
+
+            var contact = "on_" + x['username']
+            console.log(contact)
+            document.getElementById(contact).innerHTML = x['status']
+          }
+
+        }
+      })
+
+
+
+
+
+
+
+      socket.on("count_update", function (data) {
+
+        console.log("waiting for new message !!")
+
+        for (x of data) {
+          
+          var ct = "p_" + x.username
+          
+          var box = document.getElementById(x.username)
+          var counter = document.getElementById(ct)
+          
+          var usr = x.username
+          
+          if (x.count != 0) {
+            box.className = "count"
+            counter.innerHTML = x.count
+          }
+        }
+      });
+
+
+      function scrollBottom(){
+        const chatBody = document.getElementById("chat-container");
+        
+        if (chatBody) {
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }
+        
+      }
+      
+
+
+      function sendmassage() {
+        var message = document.getElementById("msg_field").value;
+
+        data = {
+          content: message,
+          to_id: to_name,
+        };
+        socket.emit("message", data);
+
+
+        var time  = document.createElement("p");
+
+        var msg = document.createElement("li");
+        var sub = document.createElement("p");
+        sub.className = "message left";
+        sub.innerHTML = message;
+        time.innerHTML = x['date'];
+        time.style = "font-size: 10px; text-decrotion: none;";
+        
+        msg.appendChild(sub)
+        msg.appendChild(time)
+        document.getElementById("chat").appendChild(msg);
+
+        document.getElementById("msg_field").value = "";
+
+        scrollBottom()
+      }
+
+
+
+
+
+      socket.on("counter_update", function (data) {
+
+        var contact_name = document.getElementById("contact_name").textContent
+
+        if (contact_name != data['user']) {
+        
+          var ct = "p_" + data['user']
+                
+          if (data['user'] != uname) {
+          
+            var corrent = document.getElementById(ct).innerText
+            document.getElementById(data['user']).className = "count"
+
+            var str = Number(corrent)
+          
+            document.getElementById(ct).innerHTML = str + data['count']
+
+        }
+        }
+      })
+
+
+
+
+
+
+      function selected(user, status) {
+        document.getElementById("chat").innerHTML = "";
+
+        to_name = user;
+        document.getElementById("contact_name").innerHTML = to_name;
+        document.getElementById("status").innerHTML = status;
+
+        var ct = "p_" + to_name
+
+        var corrent = document.getElementById(ct)
+        var box = document.getElementById(to_name)
+        box.className = ""
+        corrent.innerHTML = ""
+
+
+        socket.emit("sender", { to_usr: to_name }, function () {
+          console.log("succesfully sended");
+        });
+
+
+        socket.on("message_history", function (data) {
+          console.log("all api's sender : ", data["msg_history"]);
+
+          if (data['username']) {
+            
+            for (x of data["msg_history"]) {
+            
+              var msg = document.createElement("li");
+              var time = document.createElement("a");
+              var sub = document.createElement("p");
+
+              if (x["from_id"] === uname) {
+                msg.className = "left"
+                sub.className = "message left";
+                sub.innerHTML = x['content'];
+                time.innerHTML = "<br><br>" + x['date'];
+                time.style = "font-size: 8px; text-decrotion: none;";
+                
+                sub.sd
+                msg.appendChild(sub)
+                sub.appendChild(time)
+                document.getElementById("chat").appendChild(msg);
+
+
+              } else {
+                msg.className = "right"
+                sub.className = "message right";
+                sub.innerHTML = x['content'];
+                time.innerHTML = "<br><br>" + x['date'];
+                time.style = "font-size: 8px; text-decrotion: none;";
+                
+                msg.appendChild(sub)
+                sub.appendChild(time)
+                document.getElementById("chat").appendChild(msg);
+
+                
+              }
+            }
+          }
+
+        scrollBottom()
+
+        });
+
+      }
+
+
+
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <h5 style="margin-left: 10%; font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight: bold;">CHAT_ENGINE</h5>
+        <div class="search_bar">
+          <input name="contact_search" class="field" type="search" />
+          <button type="submit" class="btn">search</button>
+        </div>
+        <h5 id="username_" style="margin-right: 10%;">{{ name }}</h5>
+        <div class="logout_btn">
+          <form action="" method="POST">
+            <input style="display: none" name="logout" value="logout" />
+            <button type="submit" class="btn" onclick="logout_info()">logout</button>
+          </form>
+        </div>
+      </div>
+      <div class="body">
+        <div class="l_body" id="l_body">
+
+
+          {% for x in users %}
+          {% if x.username != name %}
+          <div onclick="selected('{{x.username}}','{{x.status}}')" class="chat_box">
+            <div class="pro_photo">
+              <div class="image"></div>
+            </div>
+            <div class="contact_name">
+              <h5>{{x.username}}</h5>
+            </div>
+            
+            <div class="count_info" >
+              {% if x.status == "Online" %}
+                <p id="on_{{x.username}}" style="font-size: 80%">{{x.status}}</p>
+                {% else %}
+                <p id="on_{{x.username}}" style="font-size: 60%"><span>at </span>{{x.status}}</p>
+              {% endif %}
+              <div id="{{x.username}}">
+                <p class="count_len" id="p_{{x.username}}"></p>
+              </div>
+            </div>
+            
+          </div>
+          {% endif %}
+          {% endfor %}
+
+
+        </div>
+        <div class="r_body">
+          <div class="contact_details">
+            <div class="pro_photo">
+              <div class="avatar"></div>
+            </div>
+            <div class="contact_name">
+              <h3 class="contact_name" id="contact_name"></h3>
+            </div>
+            <p id="status" style="font-size: 10px;"></p>
+          </div>
+          <div class="chat_area">
+            <div id="chat-container" class="chat-container">
+              <ul id="chat" class="chat">
+                <div id="left chat"></div>
+                <div id="right chat">
+                  <!-- <li id="mess" class="message right">
+                    <img
+                      class="logo"
+                      
+                      alt=""
+                    />
+                    <p></p>
+                  </li> -->
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div class="chat_operations">
+            <div class="form">
+              <div class="field">
+                <input
+                  type="text"
+                  id="msg_field"
+                  name="send"
+                  placeholder="send a message...."
+                  required
+                />
+              </div>
+              <div class="btn_field">
+                <button class="btn" onclick="sendmassage()">send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{{url_for('static', filename='js/chat_list.js')}}"></script>
+  </body>
+</html>
